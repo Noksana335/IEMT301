@@ -1,0 +1,110 @@
+import requests
+from bs4 import BeautifulSoup
+
+def get_weather(city_name):
+    url = f"https://wttr.in/{city_name}?format=3"
+    
+    try:
+
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        
+  
+        return response.text.strip()
+        
+    except requests.RequestException as e:
+        return f"Error getting weather: {e}"
+
+def scrape_news_headlines():
+    """
+    Scrape news headlines from a simple news site
+    """
+    url = "http://lite.cnn.com"
+    
+    try:
+        # To get the webpage
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        
+        # Parsing with Beautiful Soup
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        # Find all headline links
+        headlines = []
+        links = soup.find_all('a')
+        
+        for link in links:
+            text = link.get_text().strip()
+            # Ovver here im filtering for actual headlines (longer than 20 characters)
+            if len(text) > 20 and not text.startswith('http'):
+                headlines.append(text)
+        
+        return headlines[:10]  # Return first 10 headlines
+        
+    except requests.RequestException as e:
+        return [f"Error getting news: {e}"]
+
+def scrape_quotes():
+    """
+    Scrape inspirational quotes from quotes.toscrape.com
+    """
+    url = "http://quotes.toscrape.com/"
+    
+    try:
+        # To get the main webpage
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        
+   
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+
+        quotes = []
+        quote_divs = soup.find_all('div', class_='quote')
+        
+        for quote_div in quote_divs:
+  
+            quote_text = quote_div.find('span', class_='text').get_text()
+   
+            author = quote_div.find('small', class_='author').get_text()
+            
+            quotes.append(f'"{quote_text}" - {author}')
+        
+        return quotes
+        
+    except requests.RequestException as e:
+        return [f"Error getting quotes: {e}"]
+
+def main():
+
+    print("=== SIMPLE WEB SCRAPING EXAMPLES ===\n")
+    
+    # Example 1: Simple weather
+    print("1. WEATHER INFO:")
+    print("-" * 20)
+    city = input("Enter a city name (or press Enter for 'London'): ").strip()
+    if not city:
+        city = "London"
+    
+    weather = get_weather(city)
+    print(f"Weather in {city}: {weather}\n")
+
+
+    # Example 2: News headlines
+    print("2. NEWS HEADLINES:")
+    print("-" * 20)
+    headlines = scrape_news_headlines()
+    for i, headline in enumerate(headlines, 1):
+        print(f"{i}. {headline}")
+    print()
+
+
+    # Example 3: Inspirational quotes
+    print("3. INSPIRATIONAL QUOTES:")
+    print("-" * 20)
+    quotes = scrape_quotes()
+    for i, quote in enumerate(quotes[:5], 1):  # Show first 5 quotes
+        print(f"{i}. {quote}\n")
+
+if __name__ == "__main__":
+    main()
