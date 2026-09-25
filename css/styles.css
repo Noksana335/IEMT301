@@ -795,3 +795,139 @@ section {
 .mt-1 { margin-top: 1rem; }
 .mt-2 { margin-top: 2rem; }
 .mt-3 { margin-top: 3rem; }
+/* Profile Photo */
+.profile-photo {
+  display: block;
+  object-fit: cover;
+  object-position: center 30%;
+  border: 4px solid var(--secondary-color);
+}
+
+/* Research Section */
+.research-section {
+  background-color: var(--bg-color);
+}
+
+.research-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: var(--secondary-color);
+  border-radius: var(--border-radius);
+  border-top: 4px solid var(--accent-color);
+  box-shadow: var(--card-shadow);
+  padding: 3rem;
+  transition: var(--transition);
+}
+
+.research-card:hover {
+  box-shadow: var(--card-shadow-hover);
+}
+
+.research-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.research-badge {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.research-badge-outline {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1.5px solid var(--primary-color);
+}
+
+.research-title {
+  font-size: 1.6rem;
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.research-affiliation {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin-bottom: 1.75rem;
+}
+
+.research-summary {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 2.25rem;
+}
+
+.research-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+
+.research-stat {
+  background-color: var(--bg-color);
+  border-radius: var(--border-radius);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.research-stat .stat-number {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  line-height: 1.1;
+}
+
+.research-stat .stat-label {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.4;
+}
+
+.research-findings {
+  margin-bottom: 2rem;
+}
+
+.research-findings h4 {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.research-findings ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.research-findings li {
+  position: relative;
+  padding-left: 1.5rem;
+  line-height: 1.65;
+}
+
+.research-findings li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+}

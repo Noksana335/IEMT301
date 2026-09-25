@@ -483,3 +483,24 @@
     border-color: var(--accent-color);
   }
 }
+/* Research Section - responsive */
+@media (max-width: 900px) {
+  .research-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .research-card {
+    padding: 1.75rem 1.25rem;
+  }
+  .research-title {
+    font-size: 1.3rem;
+  }
+  .research-stat .stat-number {
+    font-size: 1.5rem;
+  }
+  .profile-photo {
+    margin: 0 auto;
+  }
+}
